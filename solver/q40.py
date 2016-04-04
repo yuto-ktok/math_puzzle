@@ -12,8 +12,7 @@ def count_num_array(num_array):
 	while num_array[0] != 1 :
 		tmp = num_array[0]
 		tmp_array = num_array[0 : tmp][::-1]
-		tmp_array.extend(num_array[tmp:])
-		num_array = tmp_array
+		num_array = tmp_array + num_array[tmp:]
 		count += 1
 	return count
 
