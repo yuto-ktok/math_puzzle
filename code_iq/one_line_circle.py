@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import itertools
-import time
+#import time
 
 ans_hash = {}
 circle_length = int(raw_input())
@@ -53,16 +53,23 @@ def count_cross3(route, not_marked , count):
 		ans += count_cross3(route + [next_point], next_not_marked, count + tmp)
 	return ans
 
-print count_cross3([0],[1,2,3],0)
-
-start = time.time()
+#start = time.time()
 line_route_array = map(lambda x: [0] + x + [0] , map(list, list(itertools.permutations(range(1,circle_length)))))
 
 #pattern1
 #print sum(map(count_cross, line_route_array))
 
 #pattern2 実行時間 pattern1とそんな変わらす、、、 n=9 の時 1.7sぐらい,,,
-print count_cross3([0],range(1,circle_length),0)
-elapsed_time = time.time() - start
-print ("elapsed_time:{0}".format(elapsed_time)) + "[sec]"
+if( circle_length % 2 == 1):
+	ans = 0
+	for i in range(1, (circle_length+1)/2):
+		next_not_marked = range(1,circle_length)
+		next_not_marked.pop(i-1)
+		ans += count_cross3([0,i],next_not_marked,0)
+	print ans * 2
+else:
+	print count_cross3([0],range(1,circle_length),0)
+#print count_cross3([0],range(1,circle_length),0)
+#elapsed_time = time.time() - start
+#print ("elapsed_time:{0}".format(elapsed_time)) + "[sec]"
 
