@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import copy
-vertical_line_board = [[0 for i in range(5)] for j in range(5)]
-horizontal_line_board = [[0 for i in range(5)] for j in range(5)]
+import time
+vertical_line_board = [[0 for i in range(5)] for j in range(4)]
+horizontal_line_board = [[0 for i in range(4)] for j in range(5)]
 max_step_size = int(raw_input()) + 1
 
+start = time.time()
 def search_path(vertical_board, horizontal_board, row, col, step_count, before_step):
 	#print "search" + str(row) + "," + str(col) + "step:" + str(step_count)
 	if(step_count < max_step_size and row == 4 and col == 3):
@@ -61,4 +63,5 @@ def make_next_horizontal_board(horizontal_board, row, col, next_col):
 	return next_horizontal_board
 
 print search_path(vertical_line_board, horizontal_line_board, 0, 0, 0, 0)
-
+elapsed_time = time.time() - start
+print ("elapsed_time:{0}".format(elapsed_time)) + "[sec]"
